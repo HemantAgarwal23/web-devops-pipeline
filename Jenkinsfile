@@ -8,7 +8,9 @@ stages {
  }
  }
  stage('Run Docker Container') {
- steps { bat 'docker run -d -p 8080:80 --name web-container web-devops-app'
+ steps {
+    bat 'docker rm -f web-container || exit 0' 
+    bat 'docker run -d -p 8080:80 --name web-container web-devops-app'
  }
  }
 }
